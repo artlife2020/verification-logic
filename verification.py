@@ -59,3 +59,21 @@ def audit_ledger(ledger):
     print("Ledger audit:")
     for k, v in ledger.records.items():
         print(k, "->", v)
+
+def stats():
+    print(json.dumps({
+        "processed_contracts": 1,
+        "status": "ok"
+    }, indent=2))
+
+def footer():
+    print("End of pipeline execution")
+
+def main():
+    ledger, h, sig = pipeline()
+    audit_ledger(ledger)
+    stats()
+    footer()
+
+if __name__ == "__main__":
+    main()
